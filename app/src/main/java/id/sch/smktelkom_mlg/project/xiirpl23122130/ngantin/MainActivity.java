@@ -1,5 +1,6 @@
 package id.sch.smktelkom_mlg.project.xiirpl23122130.ngantin;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,7 +18,8 @@ import java.util.ArrayList;
 import id.sch.smktelkom_mlg.project.xiirpl23122130.ngantin.adapter.ResepAdapter;
 import id.sch.smktelkom_mlg.project.xiirpl23122130.ngantin.model.Resep;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ResepAdapter.IResepAdapter {
+    public static final String RESEP = "resep";
     ArrayList<Resep> mList = new ArrayList<>();
     ResepAdapter mAdapter;
 
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        mAdapter = new ResepAdapter(mList);
+        mAdapter = new ResepAdapter(this, mList);
         recyclerView.setAdapter(mAdapter);
 
         fillData();
@@ -50,9 +52,12 @@ public class MainActivity extends AppCompatActivity {
         Resources resources = getResources();
         String [] arJudul = resources.getStringArray(R.array.judul);
         String [] arDeskripsi = resources.getStringArray(R.array.desc);
+        String [] arBahan = resources.getStringArray(R.array.bahan);
+        String [] arLangkah = resources.getStringArray(R.array.langkah);
+
 
         for (int i = 0; i < arJudul.length; i++) {
-            mList.add(new Resep(arJudul[i], arDeskripsi[i]));
+            mList.add(new Resep(arJudul[i], arDeskripsi[i], arBahan[i], arLangkah[i]));
         }
 
         mAdapter.notifyDataSetChanged();
@@ -78,5 +83,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void doClick(int pos) {
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra(RESEP, mList.get(pos));
+        startActivity(intent);
     }
 }

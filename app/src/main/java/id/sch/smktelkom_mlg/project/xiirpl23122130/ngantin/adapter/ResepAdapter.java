@@ -1,5 +1,6 @@
 package id.sch.smktelkom_mlg.project.xiirpl23122130.ngantin.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +19,15 @@ import id.sch.smktelkom_mlg.project.xiirpl23122130.ngantin.model.Resep;
  */
 public class ResepAdapter extends RecyclerView.Adapter<ResepAdapter.ViewHolder> {
     ArrayList<Resep> resepList;
+    IResepAdapter mIResepAdapter;
 
-    public ResepAdapter(ArrayList<Resep> resepList) {
+    public ResepAdapter(Context context, ArrayList<Resep> resepList) {
         this.resepList = resepList;
+        mIResepAdapter = (IResepAdapter) context;
+    }
+
+    public interface IResepAdapter {
+        void doClick(int pos);
     }
 
     @Override
@@ -52,6 +59,12 @@ public class ResepAdapter extends RecyclerView.Adapter<ResepAdapter.ViewHolder> 
             super(itemView);
             tvJudul = (TextView) itemView.findViewById(R.id.textViewJudul);
             tvDeskripsi = (TextView) itemView.findViewById(R.id.textViewDeskripsi);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mIResepAdapter.doClick(getAdapterPosition());
+                }
+            });
         }
     }
 }
