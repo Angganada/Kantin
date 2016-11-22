@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        tools:text="Judul"
+        android:id="@+id/textViewJudul"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewJudul"
+        android:layout_alignLeft="@+id/textViewJudul"
+        android:layout_alignStart="@+id/textViewJudul"
+        android:maxLines="2"
+        android:ellipsize="end"
+        tools:text="Deskripsi"
+        android:id="@+id/textViewDeskripsi"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+    <Button
+        android:id="@+id/buttonEdit"
+        android:textColor="?attr/colorPrimary"
+        android:text="EDIT"
+        android:layout_toLeftOf="@+id/buttonDelete"
+        android:layout_below="@+id/textViewDeskripsi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/borderlessButtonStyle"/>
+
+    <ImageButton
+        android:id="@+id/buttonDelete"
+        android:layout_below="@+id/textViewDeskripsi"
+        android:layout_alignParentRight="true"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:tint="#757575"
+        style="?android:attr/borderlessButtonStyle"
+        app:srcCompat="@drawable/ic_delete_black_24dp"/>
+
+</RelativeLayout>

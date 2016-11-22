@@ -1,15 +1,25 @@
 package id.sch.smktelkom_mlg.project.xiirpl23122130.ngantin;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
+import id.sch.smktelkom_mlg.project.xiirpl23122130.ngantin.adapter.ResepAdapter;
+import id.sch.smktelkom_mlg.project.xiirpl23122130.ngantin.model.Resep;
+
 public class MainActivity extends AppCompatActivity {
+    ArrayList<Resep> mList = new ArrayList<>();
+    ResepAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +36,26 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        mAdapter = new ResepAdapter(mList);
+        recyclerView.setAdapter(mAdapter);
+
+        fillData();
+    }
+
+    private void fillData() {
+        Resources resources = getResources();
+        String [] arJudul = resources.getStringArray(R.array.judul);
+        String [] arDeskripsi = resources.getStringArray(R.array.desc);
+
+        for (int i = 0; i < arJudul.length; i++) {
+            mList.add(new Resep(arJudul[i], arDeskripsi[i]));
+        }
+
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
