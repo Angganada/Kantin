@@ -20,6 +20,7 @@ import id.sch.smktelkom_mlg.project.xiirpl23122130.ngantin.model.Resep;
 
 public class MainActivity extends AppCompatActivity implements ResepAdapter.IResepAdapter {
     public static final String RESEP = "resep";
+    private static final int REQUEST_CODE_ADD = 88;
     ArrayList<Resep> mList = new ArrayList<>();
     ResepAdapter mAdapter;
 
@@ -31,12 +32,11 @@ public class MainActivity extends AppCompatActivity implements ResepAdapter.IRes
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
+        fab.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    goAdd();
+                }
         });
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -46,6 +46,20 @@ public class MainActivity extends AppCompatActivity implements ResepAdapter.IRes
         recyclerView.setAdapter(mAdapter);
 
         fillData();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_ADD && resultCode == RESULT_OK) {
+            Resep resep = (Resep) data.getSerializableExtra(RESEP);
+            mList.add(resep);
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private void goAdd() {
+        startActivityForResult(new Intent(this, InputActivity.class), REQUEST_CODE_ADD);
     }
 
     private void fillData() {
