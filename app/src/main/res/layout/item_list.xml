@@ -1,57 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="16dp"
-    android:background="?android:attr/selectableItemBackground"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="0dp"
+    android:layout_gravity="center"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:background="?android:attr/selectableItemBackground"
     android:paddingTop="0dp">
 
     <TextView
+        android:id="@+id/textViewJudul"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:maxLines="1"
         android:ellipsize="end"
-        tools:text="Judul"
-        android:id="@+id/textViewJudul"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        tools:text="Judul" />
 
     <TextView
+        android:id="@+id/textViewDeskripsi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewJudul"
         android:layout_alignLeft="@+id/textViewJudul"
         android:layout_alignStart="@+id/textViewJudul"
-        android:maxLines="2"
+        android:layout_below="@+id/textViewJudul"
         android:ellipsize="end"
-        tools:text="Deskripsi"
-        android:id="@+id/textViewDeskripsi"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+        android:maxLines="2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        tools:text="Deskripsi" />
 
     <Button
         android:id="@+id/buttonEdit"
-        android:textColor="?attr/colorPrimary"
-        android:text="EDIT"
-        android:layout_toLeftOf="@+id/buttonDelete"
-        android:layout_below="@+id/textViewDeskripsi"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_marginBottom="0dp" />
+        android:layout_below="@+id/textViewDeskripsi"
+        android:layout_marginBottom="0dp"
+        android:layout_toLeftOf="@+id/buttonDelete"
+        android:text="EDIT"
+        android:textColor="?attr/colorPrimary" />
 
     <ImageButton
         android:id="@+id/buttonDelete"
-        android:layout_below="@+id/textViewDeskripsi"
-        android:layout_alignParentRight="true"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textViewDeskripsi"
+        android:layout_marginBottom="0dp"
         android:tint="#757575"
-        style="?android:attr/borderlessButtonStyle"
-        app:srcCompat="@drawable/ic_delete_black_24dp"
-        android:layout_marginBottom="0dp" />
+        app:srcCompat="@drawable/ic_delete_black_24dp" />
 
 </RelativeLayout>

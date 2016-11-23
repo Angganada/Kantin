@@ -15,7 +15,7 @@
   -->
 <resources>
     <string-array name="judul">
-        <item>Palais Garnie</item>
+        <item>Nasi Goreng</item>
         <item>Piazza del Duomo</item>
         <item>Manhattan</item>
         <item>Senso-ji</item>
@@ -23,9 +23,7 @@
         <item>Table Mountain</item>
     </string-array>
     <string-array name="desc">
-        <item>The Palais Garnier which locates in Paris was built from 1861 for
-        the Paris Opera.The Palais Garnier which locates in Paris was built from 1861 for
-        the Paris Opera.
+        <item>Resep nasi goreng sederhana
         </item>
         <item>Piazza del Duomo the cathedral which locates in Florence.</item>
         <item>Manhattan is the district in New York City</item>
@@ -34,12 +32,11 @@
         <item>Table Mountain is mountain and park locates in Cape Town, South Africa.</item>
     </string-array>
     <string-array name="langkah">
-        <item>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-        deserunt mollit anim id est laborum.
+        <item>Panaskan mentega dan minyak goreng terlebih dahulu, kemudian tumis bawang putih dan bawang merah hingga harum dan layu.
+              Tambahkan jamur dan sosis, lalu aduk hingga rata.
+              Masukkan nasi, orak-arik telur, dan bumbu lainnya. ...
+              Angkat dan taburi bahan taburan.
+              Sajikan hangat dengan acar mentimun.
         </item>
         <item>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
         eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
@@ -78,7 +75,7 @@
         </item>
     </string-array>
     <string-array name="bahan">
-        <item>8 Rue Scribe, 75009 Paris, France</item>
+        <item>Nasi, sosis, telur, jamur, mentega, bawang merah, bawang putih, saus tomat, kecap, garam, merica, minyak goreng</item>
         <item>Piazza del Capitolo - 50122 Florence</item>
         <item>New York City</item>
         <item>2-3-1 Asakusa, Taitō-ku, Tokyo, Japan</item>

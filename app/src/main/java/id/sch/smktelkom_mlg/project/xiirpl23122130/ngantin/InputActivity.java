@@ -1,11 +1,10 @@
 package id.sch.smktelkom_mlg.project.xiirpl23122130.ngantin;
 
 import android.content.Intent;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import id.sch.smktelkom_mlg.project.xiirpl23122130.ngantin.model.Resep;
@@ -21,6 +20,8 @@ public class InputActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         etJudul = (EditText) findViewById(R.id.editTextNama);
         etDeskripsi = (EditText) findViewById(R.id.editTextDesc);
@@ -43,6 +44,15 @@ public class InputActivity extends AppCompatActivity {
         } else {
             setTitle("New Resep");
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void fillData() {
