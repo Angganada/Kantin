@@ -11,9 +11,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import java.util.ArrayList;
 
@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements ResepAdapter.IRes
     boolean isFiltered;
     ArrayList<Integer> mListMapFilter = new ArrayList<>();
     String mQuery;
+    int itemPos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,11 +62,15 @@ public class MainActivity extends AppCompatActivity implements ResepAdapter.IRes
         if (requestCode == REQUEST_CODE_ADD && resultCode == RESULT_OK) {
             Resep resep = (Resep) data.getSerializableExtra(RESEP);
             mList.add(resep);
-            mAdapter.notifyDataSetChanged();
+            if (isFiltered) mListAll.add(resep);
+            doFilter(mQuery);
+            //mAdapter.notifyDataSetChanged();
         } else if (requestCode == REQUEST_CODE_EDIT && resultCode == RESULT_OK) {
             Resep resep = (Resep) data.getSerializableExtra(RESEP);
             mList.remove(itemPos);
+            if (isFiltered) mListAll.remove(mListMapFilter.get(itemPos).intValue());
             mList.add(itemPos, resep);
+            if (isFiltered) mListAll.add(mListMapFilter.get(itemPos), resep);
             mAdapter.notifyDataSetChanged();
         }
     }
@@ -173,14 +178,23 @@ public class MainActivity extends AppCompatActivity implements ResepAdapter.IRes
         startActivity(intent);
     }
 
-    int itemPos;
-
     @Override
     public void doEdit(int pos) {
         itemPos = pos;
-        Intent intent = new Intent(this, InputActivity.class);
-        intent.putExtra(RESEP, mList.get(pos));
-        startActivityForResult(intent, REQUEST_CODE_EDIT);
+        final Resep resep = mList.get(pos);
+        mList.remove(itemPos);
+        if (isFiltered) mListAll.remove(mListMapFilter.get(itemPos).intValue());
+        mAdapter.notifyDataSetChanged();
+        Snackbar.make(findViewById(R.id.fab), resep.judul + "Terhapus", Snackbar.LENGTH_LONG)
+                .setAction("UNDO", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mList.add(itemPos, resep);
+                        if (isFiltered) mListAll.add(mListMapFilter.get(itemPos), resep);
+                        mAdapter.notifyDataSetChanged();
+                    }
+                })
+                .show();
     }
 
     @Override
