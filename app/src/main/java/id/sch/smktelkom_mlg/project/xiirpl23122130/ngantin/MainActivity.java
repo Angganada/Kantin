@@ -185,6 +185,18 @@ public class MainActivity extends AppCompatActivity implements ResepAdapter.IRes
         mList.remove(itemPos);
         if (isFiltered) mListAll.remove(mListMapFilter.get(itemPos).intValue());
         mAdapter.notifyDataSetChanged();
+        Intent intent = new Intent(this, InputActivity.class);
+        intent.putExtra(RESEP, mList.get(pos));
+        startActivityForResult(intent, REQUEST_CODE_EDIT);
+    }
+
+    @Override
+    public void doDelete(int pos) {
+        itemPos = pos;
+        final Resep resep = mList.get(pos);
+        mList.remove(itemPos);
+        if (isFiltered) mListAll.remove(mListMapFilter.get(itemPos).intValue());
+        mAdapter.notifyDataSetChanged();
         Snackbar.make(findViewById(R.id.fab), resep.judul + "Terhapus", Snackbar.LENGTH_LONG)
                 .setAction("UNDO", new View.OnClickListener() {
                     @Override
@@ -195,21 +207,5 @@ public class MainActivity extends AppCompatActivity implements ResepAdapter.IRes
                     }
                 })
                 .show();
-    }
-
-    @Override
-    public void doDelete(int pos) {
-        itemPos = pos;
-        final Resep resep = mList.get(pos);
-        mList.remove(itemPos);
-        mAdapter.notifyDataSetChanged();
-
-        Snackbar.make(findViewById(R.id.fab), resep.judul+" Dihapus", Snackbar.LENGTH_LONG).setAction("UNDO", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mList.add(itemPos, resep);
-                mAdapter.notifyDataSetChanged();
-            }
-        }).show();
     }
 }
