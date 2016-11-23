@@ -3,11 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Kantin.iml" filepath="$PROJECT_DIR$/Kantin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Kantin.iml" filepath="$PROJECT_DIR$/Kantin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Kantin.iml" filepath="$PROJECT_DIR$/Kantin.iml" />
       <module fileurl="file://$PROJECT_DIR$/Ngantin.iml" filepath="$PROJECT_DIR$/Ngantin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
