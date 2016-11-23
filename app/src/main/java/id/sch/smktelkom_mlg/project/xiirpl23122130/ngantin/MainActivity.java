@@ -124,6 +124,17 @@ public class MainActivity extends AppCompatActivity implements ResepAdapter.IRes
 
     @Override
     public void doDelete(int pos) {
+        itemPos = pos;
+        final Resep resep = mList.get(pos);
+        mList.remove(itemPos);
+        mAdapter.notifyDataSetChanged();
 
+        Snackbar.make(findViewById(R.id.fab), resep.judul+" Dihapus", Snackbar.LENGTH_LONG).setAction("UNDO", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mList.add(itemPos, resep);
+                mAdapter.notifyDataSetChanged();
+            }
+        }).show();
     }
 }
