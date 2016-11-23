@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -28,6 +30,8 @@ public class ResepAdapter extends RecyclerView.Adapter<ResepAdapter.ViewHolder> 
 
     public interface IResepAdapter {
         void doClick(int pos);
+        void doEdit(int pos);
+        void doDelete(int pos);
     }
 
     @Override
@@ -54,15 +58,33 @@ public class ResepAdapter extends RecyclerView.Adapter<ResepAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvJudul;
         TextView tvDeskripsi;
+        Button bEdit;
+        ImageButton bDelete;
 
         public ViewHolder(View itemView) {
             super(itemView);
             tvJudul = (TextView) itemView.findViewById(R.id.textViewJudul);
             tvDeskripsi = (TextView) itemView.findViewById(R.id.textViewDeskripsi);
+            bEdit = (Button) itemView.findViewById(R.id.buttonEdit);
+            bDelete = (ImageButton) itemView.findViewById(R.id.buttonDelete);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mIResepAdapter.doClick(getAdapterPosition());
+                }
+            });
+
+            bEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mIResepAdapter.doEdit(getAdapterPosition());
+                }
+            });
+
+            bDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mIResepAdapter.doDelete(getAdapterPosition());
                 }
             });
         }

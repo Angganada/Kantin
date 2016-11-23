@@ -21,6 +21,7 @@ import id.sch.smktelkom_mlg.project.xiirpl23122130.ngantin.model.Resep;
 public class MainActivity extends AppCompatActivity implements ResepAdapter.IResepAdapter {
     public static final String RESEP = "resep";
     private static final int REQUEST_CODE_ADD = 88;
+    private static final int REQUEST_CODE_EDIT = 99;
     ArrayList<Resep> mList = new ArrayList<>();
     ResepAdapter mAdapter;
 
@@ -54,6 +55,11 @@ public class MainActivity extends AppCompatActivity implements ResepAdapter.IRes
         if (requestCode == REQUEST_CODE_ADD && resultCode == RESULT_OK) {
             Resep resep = (Resep) data.getSerializableExtra(RESEP);
             mList.add(resep);
+            mAdapter.notifyDataSetChanged();
+        } else if (requestCode == REQUEST_CODE_EDIT && resultCode == RESULT_OK) {
+            Resep resep = (Resep) data.getSerializableExtra(RESEP);
+            mList.remove(itemPos);
+            mList.add(itemPos, resep);
             mAdapter.notifyDataSetChanged();
         }
     }
@@ -104,5 +110,20 @@ public class MainActivity extends AppCompatActivity implements ResepAdapter.IRes
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(RESEP, mList.get(pos));
         startActivity(intent);
+    }
+
+    int itemPos;
+
+    @Override
+    public void doEdit(int pos) {
+        itemPos = pos;
+        Intent intent = new Intent(this, InputActivity.class);
+        intent.putExtra(RESEP, mList.get(pos));
+        startActivityForResult(intent, REQUEST_CODE_EDIT);
+    }
+
+    @Override
+    public void doDelete(int pos) {
+
     }
 }

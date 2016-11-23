@@ -35,6 +35,21 @@ public class InputActivity extends AppCompatActivity {
                     }
                 }
         );
+
+        resep = (Resep) getIntent().getSerializableExtra(MainActivity.RESEP);
+        if (resep != null) {
+            setTitle("EDIT " + resep.judul);
+            fillData();
+        } else {
+            setTitle("New Resep");
+        }
+    }
+
+    private void fillData() {
+        etJudul.setText(resep.judul);
+        etDeskripsi.setText(resep.deskripsi);
+        etBahan.setText(resep.bahan);
+        etLangkah.setText(resep.langkah);
     }
 
     private void doSave() {
